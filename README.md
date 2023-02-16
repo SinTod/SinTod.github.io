@@ -1,1 +1,0 @@
-# Sintod.github.io
