@@ -7,12 +7,10 @@
         <title>用 docker 三步搭建 OpenLDAP 服务（包含 phpLDAPadmin Self Service Password） - SinTod&#39;s Blog</title><meta name="Description" content="SinTod&#39;s Blog"><meta property="og:title" content="用 docker 三步搭建 OpenLDAP 服务（包含 phpLDAPadmin Self Service Password）" />
 <meta property="og:description" content="启动 OpenLDAP 容器 docker run -p 389:389 -p 636:636 --env LDAP_ORGANISATION=&#34;example&#34; --env LDAP_DOMAIN=&#34;example.com&#34; \ --env LDAP_ADMIN_PASSWORD=&#34;admin&#34; --detach --name openldap osixia/openldap 上面的域名按需改成自己公司的域名 如需数据卷挂载请用以下命令 docker run --volume /data/slapd/database:/var/lib/ldap \ --volume /data/slapd/config:/etc/ldap/slapd.d \ --detach osixia/openldap:1.2.4 启动 phpLDAPadmin 容器 docker run -p 8443:443" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.sintod.fun/posts/%E7%94%A8-docker-%E4%B8%89%E6%AD%A5%E6%90%AD%E5%BB%BA-openldap-%E6%9C%8D%E5%8A%A1%E5%8C%85%E5%90%AB-phpldapadmin-self-service-password/" /><meta property="og:image" content="https://www.sintod.fun/logo.png"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://www.sintod.fun/posts/%E7%94%A8-docker-%E4%B8%89%E6%AD%A5%E6%90%AD%E5%BB%BA-openldap-%E6%9C%8D%E5%8A%A1%E5%8C%85%E5%90%AB-phpldapadmin-self-service-password/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-06-12T17:08:10+08:00" />
-<meta property="article:modified_time" content="2019-06-12T17:08:10+08:00" /><meta property="og:site_name" content="我的网站" />
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://www.sintod.fun/logo.png"/>
-
+<meta property="article:modified_time" content="2019-06-12T17:08:10+08:00" /><meta property="og:site_name" content="SinTod&#39;s Blog" />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="用 docker 三步搭建 OpenLDAP 服务（包含 phpLDAPadmin Self Service Password）"/>
 <meta name="twitter:description" content="启动 OpenLDAP 容器 docker run -p 389:389 -p 636:636 --env LDAP_ORGANISATION=&#34;example&#34; --env LDAP_DOMAIN=&#34;example.com&#34; \ --env LDAP_ADMIN_PASSWORD=&#34;admin&#34; --detach --name openldap osixia/openldap 上面的域名按需改成自己公司的域名 如需数据卷挂载请用以下命令 docker run --volume /data/slapd/database:/var/lib/ldap \ --volume /data/slapd/config:/etc/ldap/slapd.d \ --detach osixia/openldap:1.2.4 启动 phpLDAPadmin 容器 docker run -p 8443:443"/>
 <meta name="application-name" content="My cool site">
@@ -144,7 +142,7 @@
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line"><a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral"><img src="https://file.sintod.fun/upyun/%E5%8F%88%E6%8B%8D%E4%BA%91_logo5.png"width="60" height="29"/></a></div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2017 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://www.sintod.fun/" target="_blank">SinTod</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        <div class="footer-container"><div class="footer-line"><a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral"><img src="https://file.sintod.fun/upyun/%E5%8F%88%E6%8B%8D%E4%BA%91_logo5.png"width="60" height="29"/></a></div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://www.sintod.fun/" target="_blank">SinTod</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 
