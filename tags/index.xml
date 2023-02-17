@@ -1,8 +1,24 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Tags - Tag - 我的全新 Hugo 网站</title>
-        <link>http://example.org/tags/</link>
-        <description>Tags - Tag - 我的全新 Hugo 网站</description>
+        <title>Tags - Tag - SinTod&#39;s Blog</title>
+        <link>https://www.sintod.fun/tags/</link>
+        <description>Tags - Tag - SinTod&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>pingxintao@gmail.com (SinTod)</managingEditor>
-            <webMaster>pingxintao@gmail.com (SinTod)</webMaster><atom:link href="http://example.org/tags/" rel="self" type="application/rss+xml" /></channel>
+            <webMaster>pingxintao@gmail.com (SinTod)</webMaster><lastBuildDate>Wed, 12 Jun 2019 17:08:10 &#43;0800</lastBuildDate><atom:link href="https://www.sintod.fun/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>docker</title>
+    <link>https://www.sintod.fun/tags/docker/</link>
+    <pubDate>Wed, 12 Jun 2019 17:08:10 &#43;0800</pubDate>
+    <author>SinTod</author>
+    <guid>https://www.sintod.fun/tags/docker/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>LDAP</title>
+    <link>https://www.sintod.fun/tags/ldap/</link>
+    <pubDate>Wed, 12 Jun 2019 17:08:10 &#43;0800</pubDate>
+    <author>SinTod</author>
+    <guid>https://www.sintod.fun/tags/ldap/</guid>
+    <description><![CDATA[]]></description>
+</item>
+</channel>
 </rss>

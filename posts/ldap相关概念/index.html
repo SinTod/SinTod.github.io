@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>LDAP相关概念 - SinTod&#39;s Blog</title><meta name="Description" content="SinTod&#39;s Blog"><meta property="og:title" content="LDAP相关概念" />
+<meta property="og:description" content="令人头疼的多系统账号管理 大家是否有以下困扰？ 公司有多套不同的办公系统 每个系统都有不同的账号密码，有时候账号密码容易记混 内部项目每开发一个都要" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.sintod.fun/posts/ldap%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/" /><meta property="og:image" content="https://www.sintod.fun/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-06-12T17:08:10+08:00" />
+<meta property="article:modified_time" content="2019-06-12T17:08:10+08:00" /><meta property="og:site_name" content="我的网站" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.sintod.fun/logo.png"/>
+
+<meta name="twitter:title" content="LDAP相关概念"/>
+<meta name="twitter:description" content="令人头疼的多系统账号管理 大家是否有以下困扰？ 公司有多套不同的办公系统 每个系统都有不同的账号密码，有时候账号密码容易记混 内部项目每开发一个都要"/>
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.sintod.fun/posts/ldap%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/" /><link rel="prev" href="https://www.sintod.fun/posts/%E7%94%A8-docker-%E4%B8%89%E6%AD%A5%E6%90%AD%E5%BB%BA-openldap-%E6%9C%8D%E5%8A%A1%E5%8C%85%E5%90%AB-phpldapadmin-self-service-password/" /><link rel="next" href="https://www.sintod.fun/posts/docker-%E9%83%A8%E7%BD%B2%E5%BC%80%E5%90%AF-ssh-%E7%AB%AF%E5%8F%A3%E7%9A%84-ubuntu-%E7%94%A8%E4%BA%8E%E8%B0%83%E8%AF%95%E6%9C%BA%E5%99%A8/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "LDAP相关概念",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/www.sintod.fun\/posts\/ldap%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5\/"
+        },"genre": "posts","keywords": "LDAP","wordcount":  1298 ,
+        "url": "https:\/\/www.sintod.fun\/posts\/ldap%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5\/","datePublished": "2019-06-12T17:08:10+08:00","dateModified": "2019-06-12T17:08:10+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "SinTod"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="SinTod&#39;s Blog"><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="SinTod&#39;s Blog"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">LDAP相关概念</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://www.sintod.fun/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>SinTod</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E8%BF%90%E7%BB%B4%E7%9B%B8%E5%85%B3/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>运维相关</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2019-06-12">2019-06-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1298 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#令人头疼的多系统账号管理">令人头疼的多系统账号管理</a></li>
+    <li><a href="#什么是-ldap">什么是 LDAP</a>
+      <ul>
+        <li><a href="#ldap-特点">LDAP 特点</a></li>
+      </ul>
+    </li>
+    <li><a href="#ldap-的基本模型">LDAP 的基本模型</a>
+      <ul>
+        <li><a href="#目录树">目录树</a></li>
+        <li><a href="#关键字详情">关键字详情</a></li>
+      </ul>
+    </li>
+    <li><a href="#相关工具">相关工具</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="令人头疼的多系统账号管理">令人头疼的多系统账号管理</h2>
+<p>大家是否有以下困扰？</p>
+<ul>
+<li>公司有多套不同的办公系统</li>
+<li>每个系统都有不同的账号密码，有时候账号密码容易记混</li>
+<li>内部项目每开发一个都要开发和维护一套用户名密码</li>
+<li>多套系统的账号密码维护起来令人头大</li>
+</ul>
+<p>LDAP服务可以用来解决以上问题</p>
+<h2 id="什么是-ldap">什么是 LDAP</h2>
+<p>LDAP是轻量目录访问协议(Lightweight Directory Access Protocol)的缩写，LDAP是从X.500目录访问协议的基础上发展过来的，目前的版本是v3.0。与LDAP一样提供类似的目录服务软件还有OpenLDAP、ApacheDS、Active Directory、OpenDJ、Red Hat Directory Service、Microsoft Active Directory 等</p>
+<p>目录是一个为查询、浏览和搜索而优化的专业分布式数据库，它呈树状结构组织数据，就好象Linux/Unix系统中的文件目录一样。目录数据库和关系数据库不同，它有优异的读性能，但写性能差，并且没有事务处理、回滚等复杂功能，不适于存储修改频繁的数据。所以目录天生是用来查询的，就好象它的名字一样。</p>
+<p>目录服务是由目录数据库和一套访问协议组成的系统。类似以下的信息适合储存在目录中：</p>
+<ul>
+<li>企业员工信息，如姓名、电话、邮箱等；</li>
+<li>公用证书和安全密钥；</li>
+<li>公司的物理设备信息，如服务器，它的IP地址、存放位置、厂商、购买时间等；</li>
+</ul>
+<h3 id="ldap-特点">LDAP 特点</h3>
+<ul>
+<li>LDAP的结构用树来表示，而不是用表格。正因为这样，就不能用SQL语句了</li>
+<li>LDAP可以很快地得到查询结果，不过在写方面，就慢得多</li>
+<li>LDAP提供了静态数据的快速查询方式</li>
+<li>Client/server模型，Server 用于存储数据，Client提供操作目录信息树的工具</li>
+<li>这些工具可以将数据库的内容以文本格式（LDAP 数据交换格式，LDIF）呈现在你的面前</li>
+<li>LDAP是一种开放Internet标准，LDAP协议是跨平台的Interent协议</li>
+</ul>
+<h2 id="ldap-的基本模型">LDAP 的基本模型</h2>
+<h3 id="目录树">目录树</h3>
+<ul>
+<li>目录树：在一个目录服务系统中，整个目录信息集可以表示为一个目录信息树，树中的每个节点是一个条目。</li>
+<li>条目：每个条目就是一条记录，每个条目有自己的唯一可区别的名称（DN）。</li>
+<li>对象类：与某个实体类型对应的一组属性，对象类是可以继承的，这样父类的必须属性也会被继承下来。</li>
+<li>属性：描述条目的某个方面的信息，一个属性由一个属性类型和一个或多个属性值组成，属性有必须属性和非必须属性。</li>
+</ul>
+<h3 id="关键字详情">关键字详情</h3>
+<table>
+<thead>
+<tr>
+<th>关键字</th>
+<th>英文全称</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dc</td>
+<td>Domain Component</td>
+<td>域名的部分，其格式是将完整的域名分成几部分，如域名为example.com变成dc=example,dc=com（一条记录的所属位置）</td>
+</tr>
+<tr>
+<td>uid</td>
+<td>User id</td>
+<td>用户ID sintod.p （一条记录的ID）</td>
+</tr>
+<tr>
+<td>ou</td>
+<td>Organization Unit</td>
+<td>组织单位，组织单位可以包含其他各种对象（包括其他组织单元），如“Tech”（一条记录的所属组织）</td>
+</tr>
+<tr>
+<td>cn</td>
+<td>Common Name</td>
+<td>公共名称，如“Sin Tod”（一条记录的名称）</td>
+</tr>
+<tr>
+<td>sn</td>
+<td>Surname</td>
+<td>姓，如“平”</td>
+</tr>
+<tr>
+<td>dn</td>
+<td>Distinguished Name</td>
+<td>“uid=sintod.p,ou=Tech,dc=example,dc=com”，一条记录的位置（唯一）</td>
+</tr>
+<tr>
+<td>rdn</td>
+<td>Relative dn</td>
+<td>相对辨别名，类似于文件系统中的相对路径，它是与目录树结构无关的部分，如“uid=sintod”或“cn= Sin Tod”</td>
+</tr>
+</tbody>
+</table>
+<h2 id="相关工具">相关工具</h2>
+<ul>
+<li>OpenLDAP 使用比较多的开源LDAP软件</li>
+<li>phpLDAPadmin LDAP 的 web UI</li>
+<li>ApacheLdapStudio LDAP 的 GUI 支持 macOS Linux Windows</li>
+<li>PWM 自助修改密码的web服务</li>
+<li>Self Service Password 自助修改密码的web服务</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2019-06-12</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://www.sintod.fun/posts/ldap%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/" data-title="LDAP相关概念" data-hashtags="LDAP"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://www.sintod.fun/posts/ldap%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/" data-hashtag="LDAP"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://www.sintod.fun/posts/ldap%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/" data-title="LDAP相关概念"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://www.sintod.fun/posts/ldap%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/" data-title="LDAP相关概念"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://www.sintod.fun/posts/ldap%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/" data-title="LDAP相关概念"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ldap/">LDAP</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E7%94%A8-docker-%E4%B8%89%E6%AD%A5%E6%90%AD%E5%BB%BA-openldap-%E6%9C%8D%E5%8A%A1%E5%8C%85%E5%90%AB-phpldapadmin-self-service-password/" class="prev" rel="prev" title="用 docker 三步搭建 OpenLDAP 服务（包含 phpLDAPadmin Self Service Password）"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>用 docker 三步搭建 OpenLDAP 服务（包含 phpLDAPadmin Self Service Password）</a>
+            <a href="/posts/docker-%E9%83%A8%E7%BD%B2%E5%BC%80%E5%90%AF-ssh-%E7%AB%AF%E5%8F%A3%E7%9A%84-ubuntu-%E7%94%A8%E4%BA%8E%E8%B0%83%E8%AF%95%E6%9C%BA%E5%99%A8/" class="next" rel="next" title="docker 部署开启 SSH 端口的 ubuntu 用于调试机器">docker 部署开启 SSH 端口的 ubuntu 用于调试机器<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral"><img src="https://file.sintod.fun/upyun/%E5%8F%88%E6%8B%8D%E4%BA%91_logo5.png"width="60" height="29"/></a></div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2017 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://www.sintod.fun/" target="_blank">SinTod</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"data":{"id-1":"SinTod's Blog","id-2":"SinTod's Blog"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

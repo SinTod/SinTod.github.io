@@ -2,8 +2,13 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>http://example.org/posts/first_post/</loc><lastmod>2023-02-16T17:08:10&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/posts/</loc><lastmod>2023-02-16T17:08:10&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/</loc><lastmod>2023-02-16T17:08:10&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/categories/</loc></url><url>
-            <loc>http://example.org/tags/</loc></url></urlset>
+            <loc>https://www.sintod.fun/categories/</loc><lastmod>2019-06-12T17:08:10&#43;08:00</lastmod></url><url>
+            <loc>https://www.sintod.fun/tags/docker/</loc><lastmod>2019-06-12T17:08:10&#43;08:00</lastmod></url><url>
+            <loc>https://www.sintod.fun/posts/docker-%E9%83%A8%E7%BD%B2%E5%BC%80%E5%90%AF-ssh-%E7%AB%AF%E5%8F%A3%E7%9A%84-ubuntu-%E7%94%A8%E4%BA%8E%E8%B0%83%E8%AF%95%E6%9C%BA%E5%99%A8/</loc><lastmod>2019-06-12T17:08:10&#43;08:00</lastmod></url><url>
+            <loc>https://www.sintod.fun/tags/ldap/</loc><lastmod>2019-06-12T17:08:10&#43;08:00</lastmod></url><url>
+            <loc>https://www.sintod.fun/posts/ldap%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/</loc><lastmod>2019-06-12T17:08:10&#43;08:00</lastmod></url><url>
+            <loc>https://www.sintod.fun/posts/</loc><lastmod>2019-06-12T17:08:10&#43;08:00</lastmod></url><url>
+            <loc>https://www.sintod.fun/</loc><lastmod>2019-06-12T17:08:10&#43;08:00</lastmod></url><url>
+            <loc>https://www.sintod.fun/tags/</loc><lastmod>2019-06-12T17:08:10&#43;08:00</lastmod></url><url>
+            <loc>https://www.sintod.fun/posts/%E7%94%A8-docker-%E4%B8%89%E6%AD%A5%E6%90%AD%E5%BB%BA-openldap-%E6%9C%8D%E5%8A%A1%E5%8C%85%E5%90%AB-phpldapadmin-self-service-password/</loc><lastmod>2019-06-12T17:08:10&#43;08:00</lastmod></url><url>
+            <loc>https://www.sintod.fun/categories/%E8%BF%90%E7%BB%B4%E7%9B%B8%E5%85%B3/</loc><lastmod>2019-06-12T17:08:10&#43;08:00</lastmod></url></urlset>
